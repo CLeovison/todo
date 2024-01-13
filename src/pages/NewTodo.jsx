@@ -1,14 +1,20 @@
 import React, { useState } from "react";
 import styles from "../styles/NewTodo.module.css";
 import TodoList from "./TodoList";
+
 export default function NewTodo() {
   const [todolists, setTodolists] = useState([]);
   const [todo, setTodo] = useState(" ");
   const [itemid, setItemid] = useState(0);
 
-  function submits() {
-    setTodolists([...todolists, { text: todo, id: itemid }]);
-    setItemid(itemid + 1);
+  function handleSubmit(e) {
+    e.preventDefault()
+    const trimmedTodo = todo.trim()
+    if (trimmedTodo) {
+      setTodolists([...todolists, { text: trimmedTodo, id: itemid }]);
+      setItemid(itemid + 1);
+    }
+    setTodo("")
   }
 
   return (
@@ -27,7 +33,7 @@ export default function NewTodo() {
           onChange={(e) => setTodo(e.target.value)}
         />
 
-        <button className={styles.submit} onClick={submits}>
+        <button className={styles.submit} onClick={handleSubmit}>
           Submit
         </button>
       </div>
