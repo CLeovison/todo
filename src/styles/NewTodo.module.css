@@ -1,0 +1,42 @@
+/* Typograpghy */
+
+.username,
+.add {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.greet {
+  padding: 5px;
+  color: #fff;
+}
+.names {
+  background: none;
+  font-size: 1em;
+  color: #fff;
+}
+.submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  padding: 5px;
+  appearance: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #fff;
+  font-size: 20px;
+}
+.addTodo{
+  margin-right: 30px;
+}
+input {
+  appearance: none;
+  border: none;
+  outline: none;
+  padding: 5px;
+  border-radius: 10px;
+  width: 250px;
+  height: 25px;
+}
