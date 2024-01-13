@@ -52,21 +52,11 @@ export default function TodoList({ list, update }) {
               {editId === lis.id ? (
                 <button onClick={() => handleSave(lis.id)}>Save</button>
               ) : (
-                <button onClick={() => handleEdit(lis.id)}>Edit</button>
+                <button onClick={() => handleEdit(lis)}>Edit</button>
               )}
                 <button onClick={() => removeElement(lis.id)}>Delete</button>
 
             </div>
-            {/* <input
-              type="text"
-              value={lis?.text}
-              onChange={(e) => e.target.value}
-            />
-
-            <div className={styles.buttons}>
-              <button onClick={updates}>Edit</button>
-              <button onClick={() => removeElement(lis?.id)}>Delete</button>
-            </div> */}
           </li>
         ))}
       </ul>
