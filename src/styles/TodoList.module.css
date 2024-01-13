@@ -1,12 +1,20 @@
-.title{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
 }
-.list{
+.list {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.list > li{
+    list-style: none;
+}
+
+.buttons{
     display: flex;
-    justify-content: center;
-    
-    flex-direction: column;
+    justify-content: flex-end;
+  
 }

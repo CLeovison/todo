@@ -2,12 +2,13 @@ import React, { useState } from "react";
 import styles from "../styles/NewTodo.module.css";
 import TodoList from "./TodoList";
 export default function NewTodo() {
- 
   const [todolists, setTodolists] = useState([]);
   const [todo, setTodo] = useState(" ");
+  const [itemid, setItemid] = useState(0);
 
   function submits() {
-    setTodolists([...todolists, todo])
+    setTodolists([...todolists, { text: todo, id: itemid }]);
+    setItemid(itemid + 1);
   }
 
   return (
@@ -31,9 +32,7 @@ export default function NewTodo() {
         </button>
       </div>
 
-
-
-      <TodoList list={todolists} />
+      <TodoList list={todolists} update={setTodolists} />
     </>
   );
 }
