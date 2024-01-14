@@ -1,20 +1,46 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "../styles/NewTodo.module.css";
 import TodoList from "./TodoList";
 
 export default function NewTodo() {
-  const [todolists, setTodolists] = useState([]);
+  // Set initial state to local storage data
+  const [todolists, setTodolists] = useState(() => {
+    try {
+      const savedTodos = localStorage.getItem('todos');
+      return savedTodos ? JSON.parse(savedTodos) : [];
+    } catch (error) {
+      console.error("Error reading from local storage", error);
+      return [];
+    }
+  });
+  
   const [todo, setTodo] = useState(" ");
-  const [itemid, setItemid] = useState(0);
+
+  // Load todos and itemid from local storage when the component mounts
+  useEffect(() => {
+    const savedTodos = localStorage.getItem('todos');
+    if (savedTodos) {
+      setTodolists(JSON.parse(savedTodos));
+    }
+  }, []);
+
+  // Save todos and itemid to local storage whenever they change
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todolists));
+  }, [todolists]);
 
   function handleSubmit(e) {
-    e.preventDefault()
-    const trimmedTodo = todo.trim()
+    e.preventDefault();
+    const trimmedTodo = todo.trim();
     if (trimmedTodo) {
-      setTodolists([...todolists, { text: trimmedTodo, id: itemid }]);
-      setItemid(itemid + 1);
+      // Using the current timestamp as a unique ID
+      const newTodo = {
+        text: trimmedTodo,
+        id: Date.now()
+      };
+      setTodolists([...todolists, newTodo]);
     }
-    setTodo("")
+    setTodo("");
   }
 
   return (
