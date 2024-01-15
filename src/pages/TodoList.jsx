@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "../styles/TodoList.module.css";
 export default function TodoList({ list, update }) {
   const [editText, setEditText] = useState("");
-  const [editId, setEditId] = useState(null)
+  const [editId, setEditId] = useState(null);
 
   const removeElement = (id) => {
     update(list.filter((item) => item.id != id));
@@ -18,16 +18,18 @@ export default function TodoList({ list, update }) {
     // i want to edit todo 2
     // trigger handleSave
     // id = 2
-    // 
+    //
     // [{ text: todo 1, id: 1, createdAt: '13 Jan', isCompleted: false }, { text: todo 2, id: 2 }]
-    update(list.map(item => item.id === id ? { ...item, text: editText } : item))
-    setEditId(null)
-  }
+    update(
+      list.map((item) => (item.id === id ? { ...item, text: editText } : item))
+    );
+    setEditId(null);
+  };
 
   const handleEdit = (item) => {
     setEditId(item.id);
-    setEditText(item.text)
-  }
+    setEditText(item.text);
+  };
 
   return (
     <>
@@ -36,26 +38,21 @@ export default function TodoList({ list, update }) {
         {list.map((lis, index) => (
           <li key={lis?.id}>
             {editId === lis.id ? (
-              <input
-                type="text"
-                value={editText}
-                onChange={(e) => {
-                  e.preventDefault();
-                  setEditText(e.target.value)
+              <input type="text" value={editText} 
+              onChange={(e) => { e.preventDefault();
+                  setEditText(e.target.value);
                 }}
               />
             ) : (
-              <span>{ lis.text }</span>
-            )
-            }
+              <span>{lis.text}</span>
+            )}
             <div className={styles.buttons}>
               {editId === lis.id ? (
                 <button onClick={() => handleSave(lis.id)}>Save</button>
               ) : (
                 <button onClick={() => handleEdit(lis)}>Edit</button>
               )}
-                <button onClick={() => removeElement(lis.id)}>Delete</button>
-
+              <button onClick={() => removeElement(lis.id)}>Delete</button>
             </div>
           </li>
         ))}
