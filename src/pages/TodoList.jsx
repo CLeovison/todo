@@ -46,7 +46,7 @@ export default function TodoList({ list, update }) {
             ) : (
               <span>{lis.text}</span>
             )}
-            <div className={styles.buttons}>
+            <div className={styles.buttons}>  
               {editId === lis.id ? (
                 <button onClick={() => handleSave(lis.id)}>Save</button>
               ) : (
